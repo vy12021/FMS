@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.springapp.mvc.mybatis.persistence.ResourceMapper">
+    <insert id="save" parameterType="resource" keyColumn="id" useGeneratedKeys="true" keyProperty="pojo.id">
+        insert into ks_resources
+        <trim prefix="(" suffix=")">
+            <if test="pojo.name != null">
+                name,
+            </if>
+            <if test="pojo.uri != null">
+                uri,
+            </if>
+            <if test="pojo.resourceUUID != null">
+                resourceUUID,
+            </if>
+            <if test="pojo.desFmt != null">
+                desFmt,
+            </if>
+            <if test="pojo.size != null">
+                size,
+            </if>
+            <if test="pojo.type != null">
+                type,
+            </if>
+            <if test="pojo.createUser != null">
+                createUser,
+            </if>
+            <if test="pojo.createDate != null">
+                createDate,
+            </if>
+            <if test="pojo.convertStatus != null">
+                convertStatus
+            </if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")">
+            <if test="pojo.name != null">
+                #{pojo.name},
+            </if>
+            <if test="pojo.uri != null">
+                #{pojo.uri},
+            </if>
+            <if test="pojo.resourceUUID != null">
+                #{pojo.resourceUUID},
+            </if>
+            <if test="pojo.desFmt != null">
+                #{pojo.desFmt},
+            </if>
+            <if test="pojo.size != null">
+                #{pojo.size},
+            </if>
+            <if test="pojo.type != null">
+                #{pojo.type},
+            </if>
+            <if test="pojo.createUser != null">
+                #{pojo.createUser},
+            </if>
+            <if test="pojo.createDate != null">
+                #{pojo.createDate},
+            </if>
+            <if test="pojo.convertStatus != null">
+                #{pojo.convertStatus}
+            </if>
+        </trim>
+    </insert>
+
+    <update id="update" parameterType="resource">
+        update ks_resources
+        <set>
+            <if test="pojo.name != null">
+                name = #{pojo.name},
+            </if>
+            <if test="pojo.uri != null">
+                uri = #{pojo.uri},
+            </if>
+            <if test="pojo.resourceUUID != null">
+                resourceUUID = #{pojo.resourceUUID},
+            </if>
+            <if test="pojo.desFmt != null">
+                desFmt = #{pojo.desFmt},
+            </if>
+            <if test="pojo.size != null">
+                size = #{pojo.size},
+            </if>
+            <if test="pojo.type != null">
+                type = #{pojo.type},
+            </if>
+            <if test="pojo.createUser != null">
+                createUser = #{pojo.createUser},
+            </if>
+            <if test="pojo.createDate != null">
+                createDate = #{pojo.createDate},
+            </if>
+            <if test="pojo.convertStatus != null">
+                convertStatus = #{pojo.convertStatus}
+            </if>
+        </set>
+        where id = #{pojo.id}
+    </update>
+
+    <select id="findAll" resultType="resource">
+        select * from ks_resources
+    </select>
+
+    <select id="findByIds" parameterType="Integer" resultType="resource">
+        select * from ks_resources where id in
+        <foreach collection="ids" index="index" item="item" open="(" close=")" separator=",">
+            #{item}
+        </foreach>
+    </select>
+</mapper>

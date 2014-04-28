@@ -1,0 +1,69 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <!--启用SpringMVC的注解功能,它会自动注册HandlerMapping、HandlerAdapter、ExceptionResolver的相关实例-->
+
+    <mvc:annotation-driven />
+    <context:component-scan base-package="com.springapp.mvc.**.controller" />
+    <context:component-scan base-package="com.framework.sysmgmt.security.**.controller" />
+
+    <!--默认访问跳转到登录页面，即定义无Controller的path<->view直接映射 -->
+    <mvc:view-controller path="/" view-name="redirect:/admin/home" />
+
+    <mvc:resources mapping="/resources/**" location="/WEB-INF/pages/resources/" cache-period="31556926"/>
+
+    <!-- 视图解析器 -->
+    <!--其viewClass属性的默认值就是org.springframework.web.servlet.view.JstlView -->
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <!-- spring web mvc 对jstl支持 -->
+        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
+        <property name="prefix" value="/WEB-INF/pages/" />
+        <property name="suffix" value=".jsp" />
+    </bean>
+
+    <!-- 配置该项启动 spring mvc 默认的一些配置包括：默认处理器自己google -->
+    <mvc:default-servlet-handler />
+
+    <!-- 上传处理 -->
+    <bean id="multipartResolver"
+          class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+
+        <!-- one of the properties available; the maximum file size in bytes -->
+        <property name="maxUploadSize" value="100000"/>
+    </bean>
+
+    <!--<bean id="exceptionResolver" class="com.framework.spring.controller.ExceptionHandler"/>-->
+
+    <!-- 配置SpringMVC的异常解析器 -->
+    <!-- 全局异常配置 start -->
+    <!--<bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+        <property name="exceptionMappings">
+            <props>
+                <prop key="java.lang.Exception">errors/error</prop>
+                <prop key="java.lang.Throwable">errors/err</prop>
+            </props>
+        </property>
+        <property name="statusCodes">
+            <props>
+                <prop key="500">/error/error</prop>
+                <prop key="404">/error/404</prop>
+            </props>
+        </property>
+        &lt;!&ndash; 设置日志输出级别，不定义则默认不输出警告等错误日志信息 &ndash;&gt;
+        <property name="warnLogCategory" value="WARN"></property>
+        &lt;!&ndash; 默认错误页面，当找不到上面mappings中指定的异常对应视图时，使用本默认配置 &ndash;&gt;
+        <property name="defaultErrorView" value="errors/error"></property>
+        &lt;!&ndash; 默认HTTP状态码 &ndash;&gt;
+        <property name="defaultStatusCode" value="500"></property>
+    </bean>-->
+    <!-- 全局异常配置 end -->
+
+</beans>

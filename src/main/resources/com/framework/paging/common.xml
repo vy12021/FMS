@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Pager">
+
+    <sql id="countStart">
+		SELECT COUNT(*) FROM (
+	</sql>
+
+    <sql id="countEnd">
+		) AS PAGECOUNT
+	</sql>
+
+    <!-- oracle分页查询 -->
+    <sql id="paginationStart">
+		SELECT PAGEMODEL2.*
+		FROM (
+		SELECT PAGEMODEL1.*, ROWNUM AS ROW_NUM
+		FROM (
+
+	</sql>
+    <sql id="paginationEnd">
+		<![CDATA[
+
+
+		 				) PAGEMODEL1   
+		 		WHERE 	ROWNUM <= #{pager.endRow}) PAGEMODEL2 
+		 WHERE 	ROW_NUM > #{pager.startRow}
+
+
+        ]]>
+	</sql>
+
+    <!-- mysql分页查询 -->
+    <sql id="pagingStart">
+        SELECT PAGEMODEL.*
+        FROM (
+    </sql>
+    <sql id="pagingEnd">
+        ) AS PAGEMODEL LIMIT #{pager.startRow}, #{pager.pageSize}
+    </sql>
+</mapper>

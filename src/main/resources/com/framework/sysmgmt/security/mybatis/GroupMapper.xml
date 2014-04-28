@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.framework.sysmgmt.security.dao.GroupMapper">
+
+    <insert id="save" parameterType="Group" useGeneratedKeys="true" keyProperty="pojo.id"  keyColumn="id">
+        insert into ks_group
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="pojo.groupName != null">
+                groupName,
+            </if>
+            <if test="pojo.description != null">
+                description,
+            </if>
+            <if test="pojo.createDate != null">
+                createDate,
+            </if>
+            <if test="pojo.created != null">
+                created
+            </if>
+        </trim>
+        values
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="pojo.groupName != null">
+                #{pojo.groupName},
+            </if>
+            <if test="pojo.description != null">
+                #{pojo.description},
+            </if>
+            <if test="pojo.createDate != null">
+                #{pojo.createDate},
+            </if>
+            <if test="pojo.created != null">
+                #{pojo.created}
+            </if>
+        </trim>
+    </insert>
+
+    <update id="update" parameterType="Group">
+        update ks_group
+        <set>
+            <trim prefix=" " suffix=" " suffixOverrides=",">
+                <if test="pojo.groupName != null">
+                    groupName=#{pojo.groupName},
+                </if>
+                <if test="pojo.description != null">
+                    description=#{pojo.description},
+                </if>
+                <if test="pojo.createDate != null">
+                    createDate=#{pojo.createDate},
+                </if>
+                <if test="pojo.created != null">
+                    created=#{pojo.created}
+                </if>
+            </trim>
+        </set>
+        where id = #{pojo.id}
+    </update>
+
+    <select id="findByIds" parameterType="int" resultType="Group">
+        select * from ks_group where id in
+        <foreach collection="ids" index="index" item="item" open="(" close=")" separator=",">
+            #{item}
+        </foreach>
+    </select>
+
+    <select id="findAll" resultType="Group">
+        select * from ks_group
+    </select>
+
+    <delete id="deleteByIds" parameterType="int">
+        delete from ks_group where id in
+        <foreach collection="ids" index="index" item="item" open="(" close=")" separator=",">
+            #{item}
+        </foreach>
+    </delete>
+
+</mapper>

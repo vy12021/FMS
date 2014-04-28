@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
+       ">
+
+
+    <!-- enable support annotation bean instance
+         组件扫描开启后就会实例化默认的注解处理器所以下面的配置可以去掉了 -->
+    <context:annotation-config />
+
+    <!-- enable component scan spring组件扫描-->
+    <!-- @Component所标记的bean为spring以前通用的注解，3.0以后版本中
+         @Repository(dao层、存储层、持久层),
+         @Service(business业务逻辑层),
+         @Controller( )-->
+
+    <context:annotation-config />
+
+    <context:component-scan base-package="com.springapp.mvc">
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" />
+    </context:component-scan>
+    <context:component-scan base-package="com.framework">
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" />
+    </context:component-scan>
+
+    <!-- *.properties load -->
+    <context:property-placeholder location="classpath:jdbc.properties" />
+    <!--  这是原始的方式加载
+    <bean id=""
+        class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="location" value="classpath:jdbc.properties" />
+    </bean>
+    -->
+
+    <!-- 数据库映射 spring 提供的数据源但是没有真正实现动态数据库连接池(不推荐使用)-->
+    <!--<bean id="springDataSource"
+          class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="${db.driverClassName}"></property>
+        <property name="url" value="${db.url}"></property>
+        <property name="username" value="${db.username}"></property>
+        <property name="password" value="${db.password}"></property>
+    </bean>-->
+
+
+
+    <!-- dabaSource config "database connection pool" -->
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="${db.driverClassName}"></property>
+        <property name="url" value="${db.url}"></property>
+        <property name="username" value="${db.username}"></property>
+        <property name="password" value="${db.password}"></property>
+    </bean>
+
+    <!-- database connection new instance  "sqlSessionFactory has been used produce new database connection instance in com.framework.sysmgmt.security.mybatis"-->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+        <!-- com.framework.sysmgmt.security.mybatis global config file location -->
+        <property name="configLocation" value="classpath:mybatis.xml"/>
+        <!-- mapper和resultmap配置路径 -->
+        <property name="mapperLocations">
+            <list>
+                <!-- 表示在com.springapp.mvc包或以下所有目录中，以Mapper.xml结尾所有文件 -->
+                <value>classpath:com/springapp/**/*Mapper.xml</value>
+                <value>classpath:com/framework/sysmgmt/**/mybatis/*Mapper.xml</value>
+            </list>
+        </property>
+    </bean>
+
+    <!-- hibernate 需要的信息 -->
+    <!--<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean" scope="singleton" destroy-method="destroy">
+        <property name="dataSource" ref="dataSource"/>
+        &lt;!&ndash; 扫描映射文件，实体类 &ndash;&gt;
+        <property name="packagesToScan">
+            <list>
+                &lt;!&ndash; 匹配所有com开头model结尾下所有的实体 &ndash;&gt;
+                <value>com.*.model</value>
+            </list>
+        </property>
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">${hibernate.dialect}</prop>
+                <prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+                <prop key="hibernate.format_sql">true</prop>
+
+                &lt;!&ndash; 其他相关信息
+                <prop key="hibernate.query.substitutions">${hibernate.query.substitutions}</prop>
+                <prop key="hibernate.default_batch_fetch_size">${hibernate.default_batch_fetch_size}</prop>
+                <prop key="hibernate.max_fetch_depth">${hibernate.max_fetch_depth}</prop>
+                <prop key="hibernate.generate_statistics">${hibernate.generate_statistics}</prop>
+                <prop key="hibernate.bytecode.use_reflection_optimizer">${hibernate.bytecode.use_reflection_optimizer}</prop>
+
+                <prop key="hibernate.cache.use_second_level_cache">${hibernate.cache.use_second_level_cache}</prop>
+                <prop key="hibernate.cache.use_query_cache">${hibernate.cache.use_query_cache}</prop>
+                <prop key="hibernate.cache.region.factory_class">${hibernate.cache.region.factory_class}</prop>
+
+                <prop key="hibernate.cache.use_structured_entries">${hibernate.cache.use_structured_entries}</prop>
+                 &ndash;&gt;
+                &lt;!&ndash;
+               <prop key="net.sf.ehcache.configurationResourceName">${net.sf.ehcache.configurationResourceName}</prop>
+                &ndash;&gt;
+
+            </props>
+        </property>
+    </bean>
+    <aop:aspectj-autoproxy expose-proxy="true"/>
+    &lt;!&ndash; 事务管理器，这里可以设置多个 &ndash;&gt;
+    <tx:annotation-driven transaction-manager="H4TxManager"/>
+
+    &lt;!&ndash; 给事务注入sessionFactory属性 &ndash;&gt;
+    <bean id="H4TxManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+
+    &lt;!&ndash; 事务属性配置 &ndash;&gt;
+    <tx:advice id="txAdvice" transaction-manager="H4TxManager">
+        <tx:attributes>
+            &lt;!&ndash; 方法对应的传播属性 &ndash;&gt;
+            <tx:method name="save*" propagation="REQUIRED" />
+            <tx:method name="add*" propagation="REQUIRED" />
+            <tx:method name="create*" propagation="REQUIRED" />
+            <tx:method name="insert*" propagation="REQUIRED" />
+            <tx:method name="update*" propagation="REQUIRED" />
+            <tx:method name="merge*" propagation="REQUIRED" />
+            <tx:method name="del*" propagation="REQUIRED" />
+            <tx:method name="remove*" propagation="REQUIRED" />
+            <tx:method name="put*" propagation="REQUIRED" />
+            <tx:method name="use*" propagation="REQUIRED"/>
+            &lt;!&ndash;  这里用了开涛 老师的 &ndash;&gt;
+            <tx:method name="get*" propagation="REQUIRED" read-only="true" />
+            <tx:method name="count*" propagation="REQUIRED" read-only="true" />
+            <tx:method name="find*" propagation="REQUIRED" read-only="true" />
+            <tx:method name="list*" propagation="REQUIRED" read-only="true" />
+            <tx:method name="*" read-only="true" />
+        </tx:attributes>
+    </tx:advice>
+    &lt;!&ndash; 事务控制位置，一般在业务层service &ndash;&gt;
+    &lt;!&ndash;<aop:config>
+        <aop:pointcut id="txPointcut" expression="execution(* com.*.service.*.*(..))" />
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="txPointcut"/>
+    </aop:config>&ndash;&gt;-->
+
+    <!-- com.framework.sysmgmt.security.mybatis dao interface scan configuration -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage">
+            <value>com.springapp.mvc.mybatis.persistence,com.framework.sysmgmt.security.dao</value>
+        </property>
+        <!-- com.framework.sysmgmt.security.mybatis dao interface must implements this interface -->
+        <property name="markerInterface" value="com.framework.BaseMapper" />
+    </bean>
+
+
+</beans>

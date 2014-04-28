@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source source="LOCAL" name="MySQL - ks@localhost" uuid="a13ab1ea-ab6b-4e3c-9535-963b056e3f28">
+    <database-info product="MySQL" version="5.5.35-0ubuntu0.12.04.2" jdbc-version="4.0" driver-name="MySQL-AB JDBC Driver" driver-version="mysql-connector-java-5.1.22 ( Revision: ${bzr.revision-id} )">
+      <extra-name-characters>#@</extra-name-characters>
+      <identifier-quote-string>`</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="exact" quoted-identifiers="exact"/>
+    <schema name="" catalog="ks"/>
+    <table name="ks_activateuser" schema="" catalog="ks" type="TABLE">
+      <column name="id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="userId" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
+      <column name="activateId" sqlType="CHAR" length="100" precision="0" nullable="true" jdbcType="1"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <index name="userId" unique="true" columns="userId"/>
+    </table>
+    <table name="ks_group" schema="" catalog="ks" type="TABLE">
+      <column name="id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="groupName" sqlType="CHAR" length="30" precision="0" nullable="false" jdbcType="1"/>
+      <column name="description" sqlType="CHAR" length="200" precision="0" nullable="true" jdbcType="1"/>
+      <column name="createDate" sqlType="CHAR" length="50" precision="0" nullable="true" jdbcType="1"/>
+      <column name="created" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <index name="groupName" unique="true" columns="groupName"/>
+    </table>
+    <table name="ks_group_permission" schema="" catalog="ks" type="TABLE">
+      <column name="id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="groupId" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
+      <column name="permissionId" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
+      <column name="description" sqlType="CHAR" length="100" precision="0" nullable="true" jdbcType="1"/>
+      <column name="createDate" sqlType="CHAR" length="50" precision="0" nullable="true" jdbcType="1"/>
+      <column name="created" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
+    <table name="ks_permission" schema="" catalog="ks" type="TABLE">
+      <column name="id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="resourceName" sqlType="CHAR" length="50" precision="0" nullable="false" jdbcType="1"/>
+      <column name="permissionName" sqlType="CHAR" length="50" precision="0" nullable="false" jdbcType="1"/>
+      <column name="description" sqlType="CHAR" length="100" precision="0" nullable="true" jdbcType="1"/>
+      <column name="createDate" sqlType="CHAR" length="50" precision="0" nullable="true" jdbcType="1"/>
+      <column name="created" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <index name="resourceName" unique="true" columns="resourceName"/>
+      <index name="permissionName" unique="true" columns="permissionName"/>
+    </table>
+    <table name="ks_user" schema="" catalog="ks" type="TABLE">
+      <column name="id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="username" sqlType="CHAR" length="40" precision="0" nullable="false" jdbcType="1"/>
+      <column name="password" sqlType="CHAR" length="40" precision="0" nullable="false" jdbcType="1"/>
+      <column name="activateStatus" sqlType="CHAR" length="5" precision="0" nullable="true" jdbcType="1"/>
+      <column name="createDate" sqlType="CHAR" length="50" precision="0" nullable="true" jdbcType="1"/>
+      <column name="created" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <index name="username" unique="true" columns="username"/>
+    </table>
+    <table name="ks_userInfo" schema="" catalog="ks" type="TABLE">
+      <column name="id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="userId" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
+      <column name="realName" sqlType="CHAR" length="30" precision="0" nullable="true" jdbcType="1"/>
+      <column name="sex" sqlType="CHAR" length="10" precision="0" nullable="true" jdbcType="1"/>
+      <column name="age" sqlType="CHAR" length="10" precision="0" nullable="true" jdbcType="1"/>
+      <column name="email" sqlType="CHAR" length="40" precision="0" nullable="false" jdbcType="1"/>
+      <column name="phone" sqlType="CHAR" length="30" precision="0" nullable="true" jdbcType="1"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <index name="userId" unique="true" columns="userId"/>
+      <index name="email" unique="true" columns="email"/>
+      <index name="phone" unique="true" columns="phone"/>
+    </table>
+    <table name="ks_user_group" schema="" catalog="ks" type="TABLE">
+      <column name="id" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="userId" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
+      <column name="groupId" sqlType="INT" length="10" precision="0" nullable="false" jdbcType="4"/>
+      <column name="description" sqlType="CHAR" length="100" precision="0" nullable="true" jdbcType="1"/>
+      <column name="createDate" sqlType="CHAR" length="50" precision="0" nullable="true" jdbcType="1"/>
+      <column name="created" sqlType="INT" length="10" precision="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
+  </data-source>
+</component>

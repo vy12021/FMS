@@ -1,0 +1,31 @@
+@charset "UTF-8";
+#weatherBox{
+    position: fixed;
+    float: none;
+    z-index: 100;
+    background-color: yellowgreen;
+    top: 30px;
+    right: 50px;
+}
+.module{
+    position: absolute;
+    right: 30px;
+    top: 30px;
+}
+.moduleimage{
+    height: 45px;
+    width: 50px;
+}
+.moduletext{
+    font-stretch: expanded;
+    color: ghostwhite;
+    top: 85px;
+    display: block
+}
+.moduleli{
+    float: left;
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-bottom: 8px;
+}
+a.modulea:hover {text-decoration:none;}

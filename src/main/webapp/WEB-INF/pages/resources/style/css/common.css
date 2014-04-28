@@ -1,0 +1,160 @@
+
+a{
+    color: #0000CC;
+    font-size: 14px;
+    text-align: center;
+    list-style: none outside none;
+}
+#u a {
+    margin-bottom: 0;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-top: 0;
+}
+
+.formTh{
+    font-family: '宋体';
+    font-size: 20px;
+    font-weight: bolder;
+    text-align: right;
+    width: 25%;
+}
+.info{
+    font-size: 10px;
+    color: slategrey;
+    height: 30px;
+}
+.formTd{
+    font-size: 20px;
+    text-align: left;
+    width: 75%;
+}
+.formTable{
+    position: relative;
+    width: 430px;
+    background-image: url("../images/table_bg.png");
+    opacity: 0.7;
+}
+#logo{
+    background-position: center;
+    background-image: url("../images/Logo_text.png");
+    height: 175px;
+    background-repeat: no-repeat;
+    margin: 0 auto;
+}
+div#content{
+    background-image: url("../images/content_bg.jpg");
+    margin: 0 auto;
+    height: 80%;
+    width: 1000px;
+    text-align: center;
+}
+#form{
+    background-color: transparent;
+    margin: 0 auto;
+    vertical-align: middle;
+    width: 720px;
+}
+#u{
+    color: #999999;
+    padding: 4px 10px 5px 0;
+    text-align: right;
+}
+body, p, form, ul, li {
+    list-style-image: none;
+    list-style-position: outside;
+    list-style-type: none;
+    margin-bottom: 0;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+}
+body {
+    -moz-font-feature-settings: normal;
+    -moz-font-language-override: normal;
+    -x-system-font: none;
+    background-attachment: scroll;
+    background-clip: border-box;
+    background-color: hsl(0, 0%, 100%);
+    background-origin: padding-box;
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    background-size: auto auto;
+    font-family: arial;
+    font-size: 12px;
+    font-size-adjust: none;
+    font-stretch: normal;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: normal;
+    line-height: normal;
+}
+html, body {
+    height: 100%;
+}
+
+.loginInput{
+    font-size: 20px;
+}
+
+#formSubmitTd{
+    text-align: center;
+}
+.clearfix:after {
+    clear: both;
+    content: " ";
+    display: block;
+    height: 0;
+}
+.mod-footer {
+    color: hsl(0, 0%, 67%);
+    margin-bottom: 15px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 15px;
+    text-align: center;
+}
+.clearfix {
+}
+
+body, form, table, #fm {
+    position: relative;
+    margin: 0 auto;
+}
+td {
+    text-align: left;
+    line-height: 130%;
+}
+input{
+    height: 28px;
+}
+tr{
+    height: 30px;
+}
+.info{
+    font-size: 13px;
+    font-family: Arial;
+}
+#view{
+    background-image: url("../images/view1.png");
+    background-repeat: no-repeat;
+    background-size: auto;
+    background-position: center;
+}
+#cp{
+    color: hsl(0, 0%, 40%);
+    font-family: arial;
+    font-size: 12px;
+}
+footer.lf{
+    font-family: arial;
+    font-size: 12px;
+}
+#lh{
+    font-family: arial;
+    font-size: 12px;
+}
