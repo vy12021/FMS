@@ -21,7 +21,7 @@
                 </tr>
                 <tr align="center">
                     <th width="35%">email:</th>
-                    <td width="65%">${user.email}</td>
+                    <td width="65%">${userInfo.email}</td>
                 </tr>
             </table>
         </div>

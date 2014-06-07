@@ -13,4 +13,6 @@ public interface UserInfoMapper extends BaseMapper<UserInfo> {
 
     UserInfo findByEmail(@Param("email")String email);
 
+    UserInfo findByUserId(@Param("userId")Integer userId);
+
 }

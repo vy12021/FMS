@@ -51,4 +51,9 @@ public class UserInfoServiceImpl implements UserInfoService {
     public UserInfo findByEmail(@Param("email") String email) {
         return userInfoMapper.findByEmail(email);
     }
+
+    @Override
+    public UserInfo findByUserId(@Param("userId") Integer userId) {
+        return userInfoMapper.findByUserId(userId);
+    }
 }

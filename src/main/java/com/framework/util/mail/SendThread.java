@@ -44,7 +44,7 @@ public class SendThread implements Runnable {
             recipientList.add(user.getUserInfo().getEmail());
             simpleMail.setRecipientList(recipientList);
             simpleMail.setSubject("注册本系统需要激活请进入邮件中连接进行操作");
-            String activityUrl = bathPath + "/register/activity/" + uuid;
+            String activityUrl = bathPath + "/register/activate/" + uuid;
             simpleMail.setContent("尊敬的用户：" + user.getUsername() +
                     "&nbsp;<br/>&nbsp;&nbsp;&nbsp;&nbsp;刚才注册的用户需要邮箱激活请访问以下链接:<br/><a href=\"" +
                     activityUrl + "\">" + activityUrl + "</a>");

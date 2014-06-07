@@ -26,7 +26,7 @@ public class ActivateServiceImpl implements ActivateService {
 
     @Override
     public ActivateUser findByActivateId(@Param("activateId") String activateId) {
-        return null;
+        return activateMapper.findByActivateId(activateId);
     }
 
     @Override

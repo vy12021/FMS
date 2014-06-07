@@ -88,4 +88,8 @@
         select * from ks_userInfo where email = #{email}
     </select>
 
+    <select id="findByUserId" parameterType="int" resultType="UserInfo">
+        select * from ks_userInfo where userId = #{userId}
+    </select>
+
 </mapper>

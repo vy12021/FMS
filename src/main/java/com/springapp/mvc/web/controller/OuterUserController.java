@@ -116,8 +116,11 @@ public class OuterUserController {
             }
             userService.update(user);
         }
+        UserInfo userInfo = userInfoService.findByUserId(user.getId());
         map.put("msg", msg);
-        map.put("security", user);
+        map.put("userInfo", userInfo);
+        map.put("user", user);
+
         return "register/activate";
     }
 
