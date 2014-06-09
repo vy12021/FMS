@@ -5,6 +5,7 @@ import com.framework.sysmgmt.security.model.Group;
 import com.framework.sysmgmt.security.model.User;
 import com.framework.sysmgmt.security.service.AccountPermissionService;
 import com.framework.sysmgmt.security.service.UserService;
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
@@ -57,6 +58,7 @@ public class UserAuthen extends AuthorizingRealm {
         UsernamePasswordToken token = (UsernamePasswordToken) authenticationToken;
         User user = userService.findByUsername(token.getUsername());
         if (user != null) {
+            SecurityUtils.getSubject().getSession().setAttribute("userId", user.getId());
             return new SimpleAuthenticationInfo(user.getUsername(), user.getPassword(), getName());
         } else {
             return null;
