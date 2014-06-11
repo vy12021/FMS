@@ -212,7 +212,7 @@
     </listener>
 
     <listener>
-        <listener-class>com.framework.util.validatecode.ClearValicodeImageListener</listener-class>
+        <listener-class>com.vy12021.framework.util.validatecode.ClearValicodeImageListener</listener-class>
     </listener>
 
 </web-app>

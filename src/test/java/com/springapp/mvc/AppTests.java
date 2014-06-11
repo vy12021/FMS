@@ -1,7 +1,7 @@
 package com.springapp.mvc;
 
-import com.framework.util.dom.DomHandler;
-import com.framework.util.mail.SimpleMailSender;
+import com.vy12021.framework.util.dom.DomHandler;
+import com.vy12021.framework.util.mail.SimpleMailSender;
 import org.junit.Ignore;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;

@@ -21,10 +21,7 @@
 
     <context:annotation-config />
 
-    <context:component-scan base-package="com.springapp.mvc">
-        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" />
-    </context:component-scan>
-    <context:component-scan base-package="com.framework">
+    <context:component-scan base-package="com.vy12021.framework">
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" />
     </context:component-scan>
 
@@ -56,17 +53,16 @@
         <property name="password" value="${db.password}"></property>
     </bean>
 
-    <!-- database connection new instance  "sqlSessionFactory has been used produce new database connection instance in com.framework.sysmgmt.security.mybatis"-->
+    <!-- database connection new instance  "sqlSessionFactory has been used produce new database connection instance in com.vy12021.framework.sysmgmt.security.mybatis"-->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource" />
-        <!-- com.framework.sysmgmt.security.mybatis global config file location -->
+        <!-- com.vy12021.framework.sysmgmt.security.mybatis global config file location -->
         <property name="configLocation" value="classpath:mybatis.xml"/>
         <!-- mapper和resultmap配置路径 -->
         <property name="mapperLocations">
             <list>
                 <!-- 表示在com.springapp.mvc包或以下所有目录中，以Mapper.xml结尾所有文件 -->
-                <value>classpath:com/springapp/**/*Mapper.xml</value>
-                <value>classpath:com/framework/sysmgmt/**/mybatis/*Mapper.xml</value>
+                <value>classpath:com/vy12021/framework/**/*Mapper.xml</value>
             </list>
         </property>
     </bean>
@@ -144,13 +140,13 @@
         <aop:advisor advice-ref="txAdvice" pointcut-ref="txPointcut"/>
     </aop:config>&ndash;&gt;-->
 
-    <!-- com.framework.sysmgmt.security.mybatis dao interface scan configuration -->
+    <!-- com.vy12021.framework.sysmgmt.security.mybatis dao interface scan configuration -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="basePackage">
-            <value>com.springapp.mvc.mybatis.persistence,com.framework.sysmgmt.security.dao</value>
+            <value>com.vy12021.framework.sysmgmt.index.dao,com.vy12021.framework.sysmgmt.security.dao</value>
         </property>
-        <!-- com.framework.sysmgmt.security.mybatis dao interface must implements this interface -->
-        <property name="markerInterface" value="com.framework.BaseMapper" />
+        <!-- com.vy12021.framework.sysmgmt.security.mybatis dao interface must implements this interface -->
+        <property name="markerInterface" value="com.vy12021.framework.BaseMapper" />
     </bean>
 
 

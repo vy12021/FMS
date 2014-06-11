@@ -22,11 +22,11 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
-        <module name="springmvc" />
+        <module name="fms" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="springmvc" target="1.7" />
+      <module name="fms" target="1.7" />
     </bytecodeTargetLevel>
   </component>
 </project>

@@ -96,11 +96,11 @@
     -->
 
     <typeAliases>
-        <package name="com.springapp.mvc.model" />
-        <package name="com.framework.sysmgmt.security.model" />
+        <package name="com.vy12021.framework.sysmgmt.index.model" />
+        <package name="com.vy12021.framework.sysmgmt.security.model" />
     </typeAliases>
 
     <mappers>
-        <mapper resource="com/framework/paging/common.xml" />
+        <mapper resource="com/vy12021/framework/paging/common.xml" />
     </mappers>
 </configuration>

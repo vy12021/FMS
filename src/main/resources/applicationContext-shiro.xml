@@ -51,7 +51,7 @@
 
     <!-- Define the Shiro Realm implementation you want to use to connect to your back-end -->
     <!-- security datasource: -->
-    <bean id="myRealm" class="com.framework.sysmgmt.UserAuthen">
+    <bean id="myRealm" class="com.vy12021.framework.sysmgmt.UserAuthen">
     </bean>
 
     <!-- Enable Shiro Annotations for Spring-configured beans.  Only run after -->
