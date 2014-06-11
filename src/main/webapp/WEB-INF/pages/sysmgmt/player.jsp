@@ -30,12 +30,12 @@
             padding-left: 10px;
         }
     </style>
-    <script type="text/javascript" src="<%=basePath%>/resources/style/ckplayer/offlights.js"></script>
+    <script type="text/javascript" src="<%=basePath%>/static/resources/style/ckplayer/offlights.js"></script>
 
 
 <!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
     <%--下面为播放器所有参数设置--%>
-    <script type="text/javascript" src="<%=basePath%>/resources/style/ckplayer/ckplayer.js" charset="utf-8"></script>
+    <script type="text/javascript" src="<%=basePath%>/static/resources/style/ckplayer/ckplayer.js" charset="utf-8"></script>
     <script type="text/javascript">
         //如果你不需要某项设置，可以直接删除，注意var flashvars的最后一个值后面不能有逗号
         var flashvars={
@@ -74,7 +74,7 @@
         var params={bgcolor:'#FFF',allowFullScreen:true,allowScriptAccess:'always'};//这里定义播放器的其它参数如背景色（跟flashvars中的b不同），是否支持全屏，是否支持交互
         var attributes={id:'ckplayer_a1',name:'ckplayer_a1',menu:'false'};
         //下面一行是调用播放器了，括号里的参数含义：（播放器文件，要显示在的div容器，宽，高，需要flash的版本，当用户没有该版本的提示，加载初始化参数，加载设置参数如背景，加载attributes参数，主要用来设置播放器的id）
-        swfobject.embedSWF('<%=basePath%>/resources/style/ckplayer/ckplayer.swf', 'a1', '600', '400', '10.0.0','<%=basePath%>/resources/style/ckplayer/expressInstall.swf', flashvars, params, attributes);
+        swfobject.embedSWF('<%=basePath%>/static/resources/style/ckplayer/ckplayer.swf', 'a1', '600', '400', '10.0.0','<%=basePath%>/static/resources/style/ckplayer/expressInstall.swf', flashvars, params, attributes);
         /*播放器地址，容器id，宽，高，需要flash插件的版本，flashvars,params,attributes
          如果你因为目前的swfobject和你项目中的存在冲突，不想用swfobject.embedSWF调用，也可以用如下代码进行调用
          CKobject.embedSWF('ckplayer/ckplayer.swf','a1','ckplayer_a1','600','400',flashvars,params);

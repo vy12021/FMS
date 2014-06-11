@@ -9,9 +9,9 @@
 
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="../resources/style/css/error.css"/>
-    <script src="../resources/style/dwz/js/jquery-1.7.2.min.js"></script>
-    <script src="../resources/style/js/error.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../../static/resources/style/css/error.css"/>
+    <script src="../../../static/resources/style/dwz/js/jquery-1.7.2.min.js"></script>
+    <script src="../../../static/resources/style/js/error.js"></script>
 </head>
 
 <body style="text-align:center">

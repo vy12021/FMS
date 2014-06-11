@@ -21,13 +21,13 @@
     Session mySession = subject.getSession();
     mySession.setAttribute("bathPath", basePath);
 %>
-<script src="<%=basePath%>/resources/style/dwz/js/jquery-1.7.2.min.js"></script>
-<script src="<%=basePath%>/resources/style/dwz/js/jquery.validate.min.js"></script>
-<script src="<%=basePath%>/resources/style/dwz/js/dwz.validate.method.js" type="text/javascript"></script>
-<script src="<%=basePath%>/resources/style/dwz/js/dwz.regional.zh.js" type="text/javascript"></script>
-<script src="<%=basePath%>/resources/style/js/sysmgmt.js"></script>
-<link rel="stylesheet" href="<%=basePath%>/resources/style/css/common.css" />
-<link rel="Shortcut Icon" href="<%=basePath%>/resources/style/images/favicon.ico"/>
+<script src="<%=basePath%>/static/resources/style/dwz/js/jquery-1.7.2.min.js"></script>
+<script src="<%=basePath%>/static/resources/style/dwz/js/jquery.validate.min.js"></script>
+<script src="<%=basePath%>/static/resources/style/dwz/js/dwz.validate.method.js" type="text/javascript"></script>
+<script src="<%=basePath%>/static/resources/style/dwz/js/dwz.regional.zh.js" type="text/javascript"></script>
+<script src="<%=basePath%>/static/resources/style/js/sysmgmt.js"></script>
+<link rel="stylesheet" href="<%=basePath%>/static/resources/style/css/common.css" />
+<link rel="Shortcut Icon" href="<%=basePath%>/static/resources/style/images/favicon.ico"/>
 
 <div id="u">
     <shiro:authenticated>

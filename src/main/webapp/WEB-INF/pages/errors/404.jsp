@@ -80,7 +80,7 @@
 <div class="main">
     <div class="con">
         <div class="errorPic">
-            <img src="../resources/style/images/error.gif" >
+            <img src="../../../static/resources/style/images/error.gif" >
         </div>
         <div class="errorNotes">
             <div class="re">

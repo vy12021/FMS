@@ -47,17 +47,6 @@
                     }
                 });
             }
-            /*function isAvailable() {
-                //alert(document.getElementById('usernameinfo').innerHTML);
-                var uresult=!(document.getElementById('usernameinfo').innerHTML.indexOf('red'))>0;
-                var pwresult=(document.getElementById('pwconfirm').value)==(document.getElementById('pw').value);
-                *//*if(!pwresult) {
-                    document.getElementById('pwinfo').innerHTML='密码不一致';
-                }*//*
-                var eresult=!(document.getElementById('emailinfo').innerHTML.indexOf('red'))>0;
-                //alert(result);
-                return uresult&&eresult&&pwresult;
-            }*/
         </script>
         <title>新用户注册</title>
     </head>

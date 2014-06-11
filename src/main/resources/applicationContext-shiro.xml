@@ -21,12 +21,12 @@
         <property name="filterChainDefinitions">
             <value>
                 # some example chain definitions:
-                /WEB-INF/pages/resources/** = anon
                 /admin/home = authc
                 /admin/** = anon
                 /register/** = anon
                 /sysmgmt/** = authc
-                #/** = user
+                /static/** = anon
+                /** = user
                 # more URL-to-FilterChain definitions here
             </value>
         </property>
