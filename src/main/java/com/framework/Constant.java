@@ -16,17 +16,17 @@ public interface Constant {
     /**
      * ajax校验可用字符串返回值
      */
-    String available = "<img src='" + bathPath + "/resources/style/images/yes-1.png' style='height:15px;'/>可用";
+    String available = "<img src='" + bathPath + "resources/style/images/yes-1.png' style='height:15px;'/>可用";
 
     /**
      * ajax校验不可用字符串返回值
      */
-    String invalid = "<img src='" + bathPath + "/resources/style/images/no-1.png' style='height:15px;'/><span style='color:red;'>已被注册</span>";
+    String invalid = "<img src='" + bathPath + "resources/style/images/no-1.png' style='height:15px;'/><span style='color:red;'>已被注册</span>";
 
     /**
      * 绝对磁盘WEB根路径 + web页面目录
      */
-    String contextPath = ContextLoader.getCurrentWebApplicationContext().getServletContext().getRealPath("/") + "/WEB-INF/pages/";
+    String contextPath = ContextLoader.getCurrentWebApplicationContext().getServletContext().getRealPath("/") + "/";
 
     /**
      * 上传存放路径

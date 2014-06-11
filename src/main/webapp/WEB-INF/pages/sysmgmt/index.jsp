@@ -1,3 +1,4 @@
+<%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <%--
   Created by IntelliJ IDEA.
@@ -8,7 +9,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html xmlns="http://www.w3.org/1999/xhtml">
-<%@ include file="/WEB-INF/pages/include.jsp" %>
+<%@ include file="../include.jsp" %>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>安全中心</title>

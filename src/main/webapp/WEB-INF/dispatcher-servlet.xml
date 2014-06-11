@@ -16,9 +16,9 @@
     <context:component-scan base-package="com.framework.sysmgmt.security.**.controller" />
 
     <!--默认访问跳转到登录页面，即定义无Controller的path<->view直接映射 -->
-    <mvc:view-controller path="/" view-name="redirect:/admin/home" />
+    <!--<mvc:view-controller path="/" view-name="redirect:/admin/home" />-->
 
-    <mvc:resources mapping="/resources/**" location="/WEB-INF/pages/resources/" cache-period="31556926"/>
+    <!--<mvc:resources mapping="/resources/**" location="/WEB-INF/pages/resources/" cache-period="31556926"/>-->
 
     <!-- 视图解析器 -->
     <!--其viewClass属性的默认值就是org.springframework.web.servlet.view.JstlView -->
