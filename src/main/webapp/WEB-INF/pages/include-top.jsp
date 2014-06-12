@@ -12,14 +12,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path;
 
-    Subject subject = SecurityUtils.getSubject();
-    Session mySession = subject.getSession();
-    mySession.setAttribute("bathPath", basePath);
+    SecurityUtils.getSubject().getSession().setAttribute("basePath", basePath);
 %>
 <script src="<%=basePath%>/static/resources/style/dwz/js/jquery-1.7.2.min.js"></script>
 <script src="<%=basePath%>/static/resources/style/dwz/js/jquery.validate.min.js"></script>

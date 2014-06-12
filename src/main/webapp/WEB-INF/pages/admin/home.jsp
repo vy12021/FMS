@@ -13,8 +13,6 @@
 </head>
     <body>
         <div id="content">
-            <h1 align="center"><%=subject.isRemembered()%></h1>
-            <h1 align="center">${rememberMe}</h1>
             <p style="text-align: center; color: red;">${loginMsg}</p>
             <p style="text-align: center; color: red;">欢迎你</p>
             <c:if test="${u.activateStatus eq '0'}">

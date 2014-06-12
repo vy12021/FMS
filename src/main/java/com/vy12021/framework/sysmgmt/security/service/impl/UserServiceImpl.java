@@ -3,6 +3,7 @@ package com.vy12021.framework.sysmgmt.security.service.impl;
 import com.vy12021.framework.sysmgmt.security.dao.UserMapper;
 import com.vy12021.framework.sysmgmt.security.model.User;
 import com.vy12021.framework.sysmgmt.security.service.UserService;
+import com.vy12021.framework.util.paging.Pager;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,6 +25,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findByUsername(@Param("username") String username) {
         return userMapper.findByUsername(username);
+    }
+
+    @Override
+    public List<User> findPager(@Param("pager") Pager pager) {
+        return userMapper.findPager(pager);
     }
 
     @Override
