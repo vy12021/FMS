@@ -7,7 +7,7 @@
 #角色和权限管理关系我们设计：角色权限表
 
 #用户表（保存用户信息）
-create table ks_user(
+create table fms_user(
 id Integer(50) primary key auto_increment, #用户主键，自增
 username char(40) not null unique,                     #用户名
 password char(40) not null,                     #口令
@@ -17,7 +17,7 @@ created Integer                         #创建人(后台管理所用)
 );
 
 #用户组(角色)
-create table ks_group(
+create table fms_group(
 id Integer primary key auto_increment, #用户组主键，自增
 groupName char(30) not null unique,                    #组名称
 description char(200),                 #用户组的一些描述信息
@@ -26,7 +26,7 @@ created Integer                        #创建人的用户ID
 );
 
 #用户和用户组中间表(完成多对多关系)
-create table ks_user_group(
+create table fms_user_group(
 id Integer primary key auto_increment, #主键，自增
 userId Integer not null,                #用户id
 groupId Integer not null,               #组id
@@ -36,7 +36,7 @@ created Integer                        #创建人的用户id
 );
 
 #权限表(具体操作控制细节)
-create table ks_permission(
+create table fms_permission(
 id Integer primary key auto_increment, #主键，自增
 resourceName char(50) not null unique,                 #资源名称(被操作对象)
 permissionName char(50) not null unique,               #权限名称
@@ -46,7 +46,7 @@ created Integer                        #创建人用户id
 );
 
 #用户组和权限关联中间表(完成多对多关联)
-create table ks_group_permission(
+create table fms_group_permission(
 id Integer primary key auto_increment, #主键，自增
 groupId Integer not null,              #组id
 permissionId Integer not null,         #权限id
@@ -56,7 +56,7 @@ created Integer                        #创建人用户id
 );
 
 #用户注册详细信息(通过userId和user惟一关联)
-create table ks_userInfo(
+create table fms_userInfo(
 id Integer primary key auto_increment,
 userId Integer not null unique,
 realName char(30),
@@ -66,7 +66,7 @@ email char(40) not null unique,
 phone char(30) unique
 );
 
-create table ks_activateuser(
+create table fms_activateuser(
 id INTEGER primary key auto_increment ,
 userId INTEGER not null unique ,
 activateId char(100)

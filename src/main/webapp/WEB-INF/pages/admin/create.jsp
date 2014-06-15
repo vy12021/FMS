@@ -1,4 +1,3 @@
-<%@ page import="java.io.BufferedOutputStream" %>
 <%--
   Created by IntelliJ IDEA.
   User: LIUYONG
@@ -53,15 +52,15 @@
 <body>
     <div>
         <div id="form">
-            <form id="submitForm" action="<%=basePath%>/register/create"
+            <form id="submitForm" action="<%=basePath%>/admin/create"
                   method="POST">
                 <table style="width: 80%">
                     <tr>
                         <th class="formTh">username:</th>
                         <td class="formTd">
                             <input class="required" type="text" name="username" size="27" placeholder="请输入用户名"
-                               onkeyup="isUsernameAvailable(this.name, this.value, '/register/usernameValidate')"
-                               onblur="isUsernameAvailable(this.name, this.value, '/register/usernameValidate')"/>
+                               onkeyup="isUsernameAvailable(this.name, this.value, '/admin/usernameValidate')"
+                               onblur="isUsernameAvailable(this.name, this.value, '/admin/usernameValidate')"/>
                             <span id="usernameinfo" class="info"></span>
                         </td>
                     </tr>
@@ -103,8 +102,8 @@
                         <th class="formTh">email:</th>
                         <td class="formTd">
                             <input class="required email" type="text" name="UserInfo.email" size="27" placeholder="请输入常用联系邮箱"
-                                   onkeyup="isEmailAvailable(this.name, this.value, '/register/emailValidate')"
-                                    onblur="isEmailAvailable(this.name, this.value, '/register/emailValidate')"/>
+                                   onkeyup="isEmailAvailable(this.name, this.value, '/admin/emailValidate')"
+                                    onblur="isEmailAvailable(this.name, this.value, '/admin/emailValidate')"/>
                             <span id="emailinfo" class="info"></span>
                         </td>
                     </tr>

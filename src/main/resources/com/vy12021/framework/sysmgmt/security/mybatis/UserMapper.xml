@@ -4,7 +4,7 @@
 <mapper namespace="com.vy12021.framework.sysmgmt.security.dao.UserMapper">
 
     <insert id="save" parameterType="User" useGeneratedKeys="true" keyProperty="pojo.id"  keyColumn="ID">
-        insert into ks_user
+        insert into fms_user
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="pojo.username != null">
                 username,
@@ -43,7 +43,7 @@
     </insert>
 
     <update id="update" parameterType="User">
-        update ks_user
+        update fms_user
         <set>
             <trim prefix=" " suffix=" " suffixOverrides=",">
                 <if test="pojo.username != null">
@@ -99,13 +99,13 @@
         kui.age as kui_age,
         kui.email as kui_email,
         kui.phone as kui_phone
-        from ks_user as ku
-        left outer join ks_userInfo as kui on kui.userId=ku.id
+        from fms_user as ku
+        left outer join fms_userInfo as kui on kui.userId=ku.id
         where ku.id=#{id}
     </select>
 
     <select id="findByIds" parameterType="int" resultType="User">
-        select * from ks_user as ku
+        select * from fms_user as ku
         where ku.id in
         <foreach collection="ids" index="index" item="item" open="(" close=")" separator=",">
             #{item}
@@ -169,29 +169,29 @@
         kp.description as kp_description,
         kp.createDate as kp_createDate,
         kp.created as kp_created*/
-        from ks_user as ku
-        left outer join ks_userInfo as kui on kui.userId=ku.id
-        left outer join ks_user_group as kup on kup.userId=ku.id
-        left outer join ks_group as kg on kg.id=kup.groupId
-        /*left outer join ks_group_permission as kgp on kgp.groupId=kg.id
-        left outer join ks_permission as kp on kp.id=kgp.permissionId*/
+        from fms_user as ku
+        left outer join fms_userInfo as kui on kui.userId=ku.id
+        left outer join fms_user_group as kup on kup.userId=ku.id
+        left outer join fms_group as kg on kg.id=kup.groupId
+        /*left outer join fms_group_permission as kgp on kgp.groupId=kg.id
+        left outer join fms_permission as kp on kp.id=kgp.permissionId*/
         where ku.username = #{username}
     </select>
 
     <delete id="deleteByIds" parameterType="int">
-        delete from ks_user where id in
+        delete from fms_user where id in
         <foreach collection="ids" index="index" item="item" open="(" close=")" separator=",">
             #{item}
         </foreach>
     </delete>
 
     <select id="findAll" resultType="User">
-        select * from ks_user
+        select * from fms_user
     </select>
 
     <select id="findPager" resultType="User" parameterType="int">
         <include refid="Pager.pagingStart" />
-        select * from ks_user
+        select * from fms_user
         <include refid="Pager.pagingEnd" />
     </select>
 

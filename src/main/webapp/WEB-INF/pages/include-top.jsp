@@ -36,7 +36,7 @@
         <span><a href="<%=basePath%>/admin/login">登陆</a></span>
     </shiro:notAuthenticated>
     <shiro:notAuthenticated>
-    <span><a href="<%=basePath%>/register/create">注册</a></span>
+    <span><a href="<%=basePath%>/admin/create">注册</a></span>
     </shiro:notAuthenticated>
     <shiro:authenticated>
     <shiro:hasRole name="admin">

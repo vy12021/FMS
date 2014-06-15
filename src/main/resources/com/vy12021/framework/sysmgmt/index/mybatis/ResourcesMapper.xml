@@ -3,7 +3,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.vy12021.framework.sysmgmt.index.dao.ResourceMapper">
     <insert id="save" parameterType="resource" keyColumn="id" useGeneratedKeys="true" keyProperty="pojo.id">
-        insert into ks_resources
+        insert into fms_resources
         <trim prefix="(" suffix=")">
             <if test="pojo.name != null">
                 name,
@@ -66,7 +66,7 @@
     </insert>
 
     <update id="update" parameterType="resource">
-        update ks_resources
+        update fms_resources
         <set>
             <if test="pojo.name != null">
                 name = #{pojo.name},
@@ -100,11 +100,11 @@
     </update>
 
     <select id="findAll" resultType="resource">
-        select * from ks_resources
+        select * from fms_resources
     </select>
 
     <select id="findByIds" parameterType="Integer" resultType="resource">
-        select * from ks_resources where id in
+        select * from fms_resources where id in
         <foreach collection="ids" index="index" item="item" open="(" close=")" separator=",">
             #{item}
         </foreach>

@@ -6,6 +6,7 @@ import com.vy12021.framework.util.paging.Pager;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -13,7 +14,7 @@ import java.util.List;
  */
 
 @Repository
-public interface UserMapper extends BaseMapper<User> {
+public interface UserMapper extends BaseMapper<User, Serializable> {
 
    public User findByUsername(@Param("username")String username);
 

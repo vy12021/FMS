@@ -4,7 +4,7 @@
 <mapper namespace="com.vy12021.framework.sysmgmt.security.dao.GroupMapper">
 
     <insert id="save" parameterType="Group" useGeneratedKeys="true" keyProperty="pojo.id"  keyColumn="id">
-        insert into ks_group
+        insert into fms_group
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="pojo.groupName != null">
                 groupName,
@@ -37,7 +37,7 @@
     </insert>
 
     <update id="update" parameterType="Group">
-        update ks_group
+        update fms_group
         <set>
             <trim prefix=" " suffix=" " suffixOverrides=",">
                 <if test="pojo.groupName != null">
@@ -58,18 +58,18 @@
     </update>
 
     <select id="findByIds" parameterType="int" resultType="Group">
-        select * from ks_group where id in
+        select * from fms_group where id in
         <foreach collection="ids" index="index" item="item" open="(" close=")" separator=",">
             #{item}
         </foreach>
     </select>
 
     <select id="findAll" resultType="Group">
-        select * from ks_group
+        select * from fms_group
     </select>
 
     <delete id="deleteByIds" parameterType="int">
-        delete from ks_group where id in
+        delete from fms_group where id in
         <foreach collection="ids" index="index" item="item" open="(" close=")" separator=",">
             #{item}
         </foreach>

@@ -7,7 +7,7 @@
     <!-- 注册用户uuid插入 -->
     <insert id="save" parameterType="activateUser"
             keyProperty="pojo.id" keyColumn="ID" useGeneratedKeys="true">
-        insert into ks_activateuser
+        insert into fms_activateuser
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="pojo.activateId != null">
                 activateId,
@@ -28,7 +28,7 @@
     </insert>
 
     <update id="update" parameterType="ActivateUser">
-        update ks_activateuser
+        update fms_activateuser
         <set>
             <if test="pojo.activateId != null">
                 activateId=#{pojo.activateId},
@@ -41,15 +41,15 @@
     </update>
 
     <select id="findByUserId" parameterType="Integer" resultType="activateUser">
-        select * from ks_activateuser where userId = #{userId}
+        select * from fms_activateuser where userId = #{userId}
     </select>
 
     <select id="findByActivateId" parameterType="string" resultType="activateUser">
-        select * from ks_activateuser where activateId = #{activateId}
+        select * from fms_activateuser where activateId = #{activateId}
     </select>
 
     <delete id="deleteByIds" parameterType="Integer">
-        delete from ks_activateuser where id in
+        delete from fms_activateuser where id in
         <foreach collection="ids" index="index" item="item" open="(" close=")" separator=",">
             #{item}
         </foreach>

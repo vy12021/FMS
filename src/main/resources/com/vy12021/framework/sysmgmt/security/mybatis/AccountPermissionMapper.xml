@@ -4,7 +4,7 @@
 <mapper namespace="com.vy12021.framework.sysmgmt.security.dao.AccountPermissionMapper">
 
     <insert id="save" parameterType="AccountPermission" useGeneratedKeys="true" keyProperty="pojo.id"  keyColumn="id">
-        insert into ks_permission
+        insert into fms_permission
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="pojo.permissionName != null">
                 permissionName,
@@ -37,7 +37,7 @@
     </insert>
 
     <update id="update" parameterType="AccountPermission">
-        update ks_permission
+        update fms_permission
         <set>
             <trim prefix=" " suffix=" " suffixOverrides=",">
                 <if test="pojo.permissionName != null">
@@ -58,24 +58,24 @@
     </update>
 
     <select id="findPermissionsByGroupId" parameterType="int" resultType="AccountPermission">
-        select * from ks_permission as kp where kp.id in
+        select * from fms_permission as kp where kp.id in
 		(select kgp.permissionId
-        from ks_group_permission as kgp where kgp.groupId = #{groupId})
+        from fms_group_permission as kgp where kgp.groupId = #{groupId})
     </select>
 
     <select id="findByIds" parameterType="int" resultType="AccountPermission">
-        select * from ks_permission where id in
+        select * from fms_permission where id in
         <foreach collection="ids" index="index" item="item" open="(" close=")" separator=",">
             #{item}
         </foreach>
     </select>
 
     <select id="findAll" resultType="AccountPermission">
-        select * from ks_permission
+        select * from fms_permission
     </select>
 
     <delete id="deleteByIds" parameterType="int">
-        delete from ks_permission where id in
+        delete from fms_permission where id in
         <foreach collection="ids" index="index" item="item" open="(" close=")" separator=",">
             #{item}
         </foreach>

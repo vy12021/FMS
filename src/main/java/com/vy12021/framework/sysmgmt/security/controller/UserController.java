@@ -1,7 +1,7 @@
 package com.vy12021.framework.sysmgmt.security.controller;
 
 import com.vy12021.framework.sysmgmt.security.model.User;
-import com.vy12021.framework.sysmgmt.security.service.impl.UserServiceImpl;
+import com.vy12021.framework.sysmgmt.security.service.UserService;
 import com.vy12021.framework.util.paging.Pager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,7 +18,7 @@ import java.util.List;
 public class UserController {
 
     @Autowired
-    private UserServiceImpl userService;
+    private UserService userService;
 
     @RequestMapping(value = "/test", method = RequestMethod.GET)
     public String test(Pager pager) {
