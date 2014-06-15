@@ -37,6 +37,6 @@
         FROM (
     </sql>
     <sql id="pagingEnd">
-        ) AS PAGEMODEL LIMIT #{pager.startRow}, #{pager.pageSize}
+        ) AS PAGEMODEL LIMIT #{pager.firstResult}, #{pager.pageSize}
     </sql>
 </mapper>

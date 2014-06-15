@@ -144,7 +144,7 @@
         </collection>
     </resultMap>
 
-    <select id="findByUsername" parameterType="int" resultMap="UserInfoResult">
+    <select id="findByUsername" parameterType="string" resultMap="UserInfoResult">
         select
         ku.id as ku_id,
         ku.username as ku_username,
@@ -187,6 +187,12 @@
 
     <select id="findAll" resultType="User">
         select * from ks_user
+    </select>
+
+    <select id="findPager" resultType="User" parameterType="int">
+        <include refid="Pager.pagingStart" />
+        select * from ks_user
+        <include refid="Pager.pagingEnd" />
     </select>
 
 </mapper>
