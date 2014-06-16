@@ -67,6 +67,11 @@
         </property>
     </bean>
 
+    <!-- mybatis利用DataSourceTransactionManager进行事务管理-->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource" />
+    </bean>
+
     <!-- hibernate 需要的信息 -->
     <!--<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean" scope="singleton" destroy-method="destroy">
         <property name="dataSource" ref="dataSource"/>

@@ -189,7 +189,7 @@
         select * from fms_user
     </select>
 
-    <select id="findPager" resultType="User" parameterType="int">
+    <select id="findByPager" resultType="User" parameterType="int">
         <include refid="Pager.pagingStart" />
         select * from fms_user
         <include refid="Pager.pagingEnd" />
