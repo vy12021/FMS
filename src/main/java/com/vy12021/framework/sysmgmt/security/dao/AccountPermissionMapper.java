@@ -14,6 +14,6 @@ import java.util.List;
 @Repository
 public interface AccountPermissionMapper extends BaseMapper<AccountPermission, Serializable> {
 
-    public List<AccountPermission> findPermissionsByGroupId(@Param("groupId") Integer groupId);
+    public List<AccountPermission> findPermissionsByGroupId(@Param("groupId") Long groupId);
 
 }

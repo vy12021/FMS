@@ -58,10 +58,16 @@ $(document).ready(function(){
     $('#weatherBox').mouseout(function(){
         $('#weatherBox').hide();
     });
-    $('.moduleli').mouseover(function(){
+    $('.moduleli').click(function(){
+        $('.moduleli').css('background-color','transparent');
         $(this).css('background-color','#1871dd');
     });
-    $('.moduleli').mouseout(function(){
-        $(this).css('background-color','transparent');
-    });
+    $('.moduleli').hover(
+        function() {
+            $(this).addClass('moduleSelect');
+        },
+        function() {
+            $(this).removeClass('moduleSelect');
+        }
+    );
 });

@@ -13,7 +13,7 @@ import java.util.List;
  * Created by LIUYONG on 14-2-25.
  */
 @Service
-public class AccountPermissionService extends BaseService<AccountPermission, Integer, AccountPermissionMapper> {
+public class AccountPermissionService extends BaseService<AccountPermission, Long, AccountPermissionMapper> {
 
     @Autowired
     @Override
@@ -21,7 +21,7 @@ public class AccountPermissionService extends BaseService<AccountPermission, Int
         super.setMapper(mapper);
     }
 
-    public List<AccountPermission> findPermissionsByGroupId(@Param("groupId") Integer groupId) {
+    public List<AccountPermission> findPermissionsByGroupId(@Param("groupId") Long groupId) {
         return this.getMapper().findPermissionsByGroupId(groupId);
     }
 }

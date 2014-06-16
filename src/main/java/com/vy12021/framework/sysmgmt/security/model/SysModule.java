@@ -15,10 +15,10 @@ public class SysModule implements Serializable {
     private static final long serialVersionUID = 8065075723148790668L;
 
     /*主键*/
-    private Integer id;
+    private Long id;
 
     /*父模块id*/
-    private Integer superId;
+    private Long superId;
 
     /*模块名称*/
     private String moduleName;

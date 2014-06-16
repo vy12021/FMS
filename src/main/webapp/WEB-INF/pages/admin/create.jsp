@@ -115,7 +115,7 @@
             </form>
             <c:if test="${msg != null && msg != ''}">
             <p style="text-align: center; color: red;">${msg},如果长时间未收到请
-                <a href="<%=basePath%>/register/reSendEmail/${userId}" >重新发送</a></p>
+                <a href="<%=basePath%>/admin/reSendEmail/${userId}" >重新发送</a></p>
             </c:if>
         </div>
     </div>

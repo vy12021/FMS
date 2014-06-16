@@ -11,14 +11,14 @@ import java.io.Serializable;
 
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class ActivateUser implements Serializable {
+public class Activate implements Serializable {
 
     private static final long serialVersionUID = -1541047194880389364L;
 
-    private Integer id;
+    private Long id;
 
     private String activateId;
 
-    private Integer userId;
+    private Long userId;
 
 }

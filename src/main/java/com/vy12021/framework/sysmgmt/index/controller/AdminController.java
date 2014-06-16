@@ -1,7 +1,7 @@
 package com.vy12021.framework.sysmgmt.index.controller;
 
 import com.vy12021.framework.Constant;
-import com.vy12021.framework.sysmgmt.index.model.ActivateUser;
+import com.vy12021.framework.sysmgmt.index.model.Activate;
 import com.vy12021.framework.sysmgmt.index.service.ActivateService;
 import com.vy12021.framework.sysmgmt.security.model.User;
 import com.vy12021.framework.sysmgmt.security.model.UserInfo;
@@ -21,6 +21,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -79,7 +80,7 @@ public class AdminController {
             return "admin/create";
         }
         user.setPassword(formatUtils.Md5(user.getPassword()));
-        user.setActivateStatus("0");
+        user.setActivateStatus(0);
         userService.save(user);
         user.getUserInfo().setUserId(user.getId());
         userInfoService.save(user.getUserInfo());
@@ -92,7 +93,7 @@ public class AdminController {
 
     @RequestMapping(value = "/reSendEmail/{userId}", method = RequestMethod.GET)
     public String reSendEmail(HttpServletRequest request, @PathVariable String userId, Map<String,Object> map) {
-        User user = userService.findById(Integer.parseInt(userId));
+        User user = userService.findById(Long.parseLong(userId));
         if(user != null) {
             userService.register(user);
         }
@@ -103,12 +104,12 @@ public class AdminController {
 
     @RequestMapping(value = "/activate/{uuid}", method = {RequestMethod.GET, RequestMethod.POST})
     public String preActivity(HttpServletRequest request, Map<String,Object> map, @PathVariable String uuid, User user) {
-        ActivateUser activateUser = activityService.findByActivateId(uuid);
+        Activate activate = activityService.findByActivateId(uuid);
         String msg = "";
-        if(activateUser != null) {
-            user = userService.findByIds(formatUtils.convertStringArray(activateUser.getUserId().toString().split(","))).get(0);
-            if(user.getActivateStatus() != null && user.getActivateStatus().equals("0")) {
-                user.setActivateStatus("1");
+        if(activate != null) {
+            user = userService.findByIds(formatUtils.convertStringArrayToLong(activate.getUserId().toString().split(","))).get(0);
+            if(user.getActivateStatus() != null && user.getActivateStatus() == 0) {
+                user.setActivateStatus(1);
                 msg = "激活成功";
             } else {
                 msg = "此链接失效";
@@ -174,6 +175,50 @@ public class AdminController {
         map.put("u", u);
         map.put("loginMsg", loginMsg);
         return "redirect:/sysmgmt/index";
+    }
+
+    @RequestMapping(value = "/login_dialog", method = RequestMethod.GET)
+    public String preLogin_dialog() {
+        return "admin/login_dialog";
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/login_dialog", method = RequestMethod.POST)
+    public Map<String, Object> login_dialog(HttpServletRequest request, User user) {
+        Map<String, Object> map = new HashMap<String, Object>();
+        String loginMsg = "";
+        Subject subject = SecurityUtils.getSubject();
+        UsernamePasswordToken token = new UsernamePasswordToken();
+        token.setUsername(user.getUsername());
+        token.setPassword(formatUtils.Md5(user.getPassword()).toCharArray());
+        if(request.getParameter("rememberMe") != null && !request.getParameter("rememberMe").equals("")) {
+            boolean rememberMe = Boolean.valueOf(request.getParameter("rememberMe"));
+            token.setRememberMe(rememberMe);
+        }
+        loginMsg = "登陆成功";
+        try {
+            subject.login(token);
+        } catch (UnknownAccountException uae) {
+            loginMsg = "未知账户";
+            map.put("loginMsg", loginMsg);
+            return map;
+        } catch (IncorrectCredentialsException ice) {
+            loginMsg = "密码错误";
+            map.put("loginMsg", loginMsg);
+            return map;
+        } catch ( LockedAccountException lae ) {
+            loginMsg = "账户锁定";
+            map.put("loginMsg", loginMsg);
+            return map;
+        } catch ( ExcessiveAttemptsException eae ) {
+            loginMsg = "";
+            map.put("loginMsg", loginMsg);
+            return map;
+        } catch ( AuthenticationException ae ) {
+            //unexpected error?
+        }
+        map.put("loginMsg", loginMsg);
+        return map;
     }
 
     @RequestMapping(value = "/validatecode", method = RequestMethod.POST)

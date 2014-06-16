@@ -16,7 +16,7 @@ public class AccountPermission implements Serializable {
     /**
      * 权限id
      */
-    private Integer id;
+    private Long id;
 
     /**
      * 资源名称
@@ -41,6 +41,6 @@ public class AccountPermission implements Serializable {
     /**
      * 创建人
      */
-    private String created;
+    private Long created;
 
 }

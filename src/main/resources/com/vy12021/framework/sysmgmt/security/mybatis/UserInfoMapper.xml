@@ -66,7 +66,7 @@
         where id = #{pojo.id}
     </update>
 
-    <select id="findByIds" parameterType="int" resultType="UserInfo">
+    <select id="findByIds" parameterType="long" resultType="UserInfo">
         select * from fms_userInfo where id in
         <foreach collection="ids" index="index" item="item" open="(" close=")" separator=",">
             #{item}
@@ -77,7 +77,7 @@
         select * from fms_userInfo
     </select>
 
-    <delete id="deleteByIds" parameterType="int">
+    <delete id="deleteByIds" parameterType="long">
         delete from fms_userInfo where id in
         <foreach collection="ids" index="index" item="item" open="(" close=")" separator=",">
             #{item}
@@ -88,7 +88,7 @@
         select * from fms_userInfo where email = #{email}
     </select>
 
-    <select id="findByUserId" parameterType="int" resultType="UserInfo">
+    <select id="findByUserId" parameterType="long" resultType="UserInfo">
         select * from fms_userInfo where userId = #{userId}
     </select>
 

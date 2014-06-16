@@ -17,7 +17,7 @@ public class Group implements Serializable {
     /**
      * 组(角色)id
      */
-    private Integer id;
+    private Long id;
 
     /**
      * 组名
@@ -37,7 +37,7 @@ public class Group implements Serializable {
     /**
      * 创建人
      **/
-    private String created;
+    private Long created;
 
     /**
      * 权限列表

@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
  * Created by LIUYONG on 14-2-25.
  */
 @Service
-public class GroupService extends BaseService<Group, Integer, GroupMapper> {
+public class GroupService extends BaseService<Group, Long, GroupMapper> {
 
     @Autowired
     @Override

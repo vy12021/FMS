@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
  * Created by LIUYONG on 14-2-25.
  */
 @Service
-public class UserInfoService extends BaseService<UserInfo, Integer, UserInfoMapper> {
+public class UserInfoService extends BaseService<UserInfo, Long, UserInfoMapper> {
 
     @Autowired
     @Override
@@ -24,7 +24,7 @@ public class UserInfoService extends BaseService<UserInfo, Integer, UserInfoMapp
         return this.getMapper().findByEmail(email);
     }
 
-    public UserInfo findByUserId(@Param("userId")Integer userId) {
+    public UserInfo findByUserId(@Param("userId")Long userId) {
         return this.getMapper().findByUserId(userId);
     }
 }

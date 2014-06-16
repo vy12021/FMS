@@ -3,15 +3,19 @@ package com.vy12021.framework.sysmgmt.index.controller;
 import com.vy12021.framework.sysmgmt.index.model.Resource;
 import com.vy12021.framework.sysmgmt.index.service.ResourceService;
 import com.vy12021.framework.Constant;
+import com.vy12021.framework.sysmgmt.security.model.SysModule;
+import com.vy12021.framework.sysmgmt.security.service.SysModuleService;
 import com.vy12021.framework.util.common.FormatUtils;
 import com.vy12021.framework.util.dom.DomHandler;
 import com.vy12021.framework.util.upload.UploadService;
 import com.vy12021.framework.util.video.VideoService;
+import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -36,10 +40,15 @@ public class SysmgmtController {
     private ResourceService resourceService;
 
     @Autowired
+    private SysModuleService sysModuleService;
+
+    @Autowired
     private FormatUtils formatUtils;
 
-    @RequestMapping(value = "/tree", method = RequestMethod.GET)
-    public String tree() {
+    @RequestMapping(value = "/tree/{moduleId}", method = RequestMethod.GET)
+    public String tree(HttpServletRequest request, @PathVariable("moduleId")String moduleId, Map<String, Object> map) {
+        List<SysModule> sysModuleList = sysModuleService.findModulesBySuperId((Long) SecurityUtils.getSubject().getSession().getAttribute("userId"), Long.parseLong(moduleId));
+        map.put("moduleList", sysModuleList);
         return "sysmgmt/tree";
     }
 
@@ -50,7 +59,9 @@ public class SysmgmtController {
     }
 
     @RequestMapping(value = "/index", method = RequestMethod.GET)
-    public String index(HttpServletRequest request) {
+    public String index(Map<String, Object> map) {
+        List<SysModule> sysModuleList = sysModuleService.findModulesByUser((Long) SecurityUtils.getSubject().getSession().getAttribute("userId"));
+        map.put("modules", sysModuleList);
         return "sysmgmt/index";
     }
 
@@ -65,7 +76,7 @@ public class SysmgmtController {
         //上传接收保存文件名
         com.vy12021.framework.sysmgmt.index.model.Resource resource = new com.vy12021.framework.sysmgmt.index.model.Resource();
         String fileName = uploadService.upload(request, Constant.contextPath + Constant.uploadPath);
-        resource.setConvertStatus("0");
+        resource.setConvertStatus(0);
         resource.setName(fileName);
         UUID uuid = UUID.randomUUID();
         resource.setResourceUUID(uuid.toString());
@@ -87,7 +98,7 @@ public class SysmgmtController {
 
     @RequestMapping(value = "/resource/view/{id}", method = RequestMethod.GET)
     public String play(HttpServletRequest request, Map<String, Object> map, @PathVariable Integer id) {
-        com.vy12021.framework.sysmgmt.index.model.Resource resource = resourceService.findByIds(formatUtils.convertStringArray(id.toString().split(","))).get(0);
+        com.vy12021.framework.sysmgmt.index.model.Resource resource = resourceService.findByIds(formatUtils.convertStringArrayToLong(id.toString().split(","))).get(0);
         map.put("resource", resource);
         String url= "/" + resource.getUri() + resource.getName();
         return "sysmgmt/player";

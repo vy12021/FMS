@@ -84,8 +84,9 @@
     <script type="text/javascript">
         $(function(){
             DWZ.init("<%=basePath%>/static/resources/style/dwz/dwz.frag.xml", {
-                loginUrl:"login_dialog.html", loginTitle:"登录",	// 弹出登录对话框
-//		loginUrl:"login.html",	// 跳到登录页面
+                loginUrl:"<%=basePath%>/admin/login_dialog",
+                loginTitle:"登录",	// 弹出登录对话框
+//        		loginUrl:"login.html",	// 跳到登录页面
                 statusCode:{ok:200, error:300, timeout:301}, //【可选】
                 pageInfo:{pageNum:"pageNum", numPerPage:"numPerPage", orderField:"orderField", orderDirection:"orderDirection"}, //【可选】
                 debug:false,	// 调试模式 【true|false】
@@ -106,7 +107,7 @@
 <div id="layout">
 <div id="header">
     <div class="headerNav">
-        <a class="logo" style="background:url(../static/resources/style/images/Logo_text.png) no-repeat;" href="<%=basePath%>">标志</a>
+        <a class="logo" style="background:url(<%=basePath%>/static/resources/style/images/Logo_text.png) no-repeat;" href="<%=basePath%>">标志</a>
         <ul class="nav">
             <shiro:authenticated>
                 <li><a href="<%=basePath%>/admin/home"><shiro:principal/></a></li>
@@ -120,18 +121,16 @@
             </shiro:authenticated>
         </ul>
         <ul id="module" class="module">
+            <c:forEach items="${modules}" var="item">
+                <c:if test="${item.superId eq 1}">
             <li class="moduleli">
-                <a class="modulea" href="<%=basePath%>/sysmgmt/tree" target="ajax" rel="sidebar">
-                    <img class="moduleimage" src="<%=basePath%>/static/resources/style/images/sysmgmt.png" alt=""/>
-                    <span class="moduletext">系统设置</span>
+                <a class="modulea" href="<%=basePath%>/sysmgmt/tree/${item.id}" target="ajax" rel="sidebar">
+                    <img class="moduleimage" src="<%=basePath%>${item.iconUri}" alt=""/>
+                    <span class="moduletext">${item.moduleName}</span>
                 </a>
             </li>
-            <li class="moduleli">
-                <a class="modulea" href="" target="sidebar">
-                    <img class="moduleimage" src="<%=basePath%>/static/resources/style/images/resourcemgmt.png" alt=""/>
-                    <span class="moduletext">资源管理</span>
-                </a>
-            </li>
+                </c:if>
+            </c:forEach>
         </ul>
         <iframe id="weatherBox" name="ifm" allowtransparency="true" frameborder="0" width="387" height="98" scrolling="no"
                 src="http://tianqi.2345.com/plugin/widget/index.htm?s=2&z=1&t=0&v=0&d=3&k=3&f=1&q=1&e=1&a=1&c=54511&w=387&h=98">

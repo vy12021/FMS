@@ -5,9 +5,9 @@
 <mapper namespace="com.vy12021.framework.sysmgmt.index.dao.ActivateMapper">
 
     <!-- 注册用户uuid插入 -->
-    <insert id="save" parameterType="activateUser"
+    <insert id="save" parameterType="activate"
             keyProperty="pojo.id" keyColumn="ID" useGeneratedKeys="true">
-        insert into fms_activateuser
+        insert into fms_activate
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="pojo.activateId != null">
                 activateId,
@@ -27,8 +27,8 @@
         </trim>
     </insert>
 
-    <update id="update" parameterType="ActivateUser">
-        update fms_activateuser
+    <update id="update" parameterType="activate">
+        update fms_activate
         <set>
             <if test="pojo.activateId != null">
                 activateId=#{pojo.activateId},
@@ -40,16 +40,16 @@
         where id=#{pojo.id}
     </update>
 
-    <select id="findByUserId" parameterType="Integer" resultType="activateUser">
-        select * from fms_activateuser where userId = #{userId}
+    <select id="findByUserId" parameterType="long" resultType="activate">
+        select * from fms_activate where userId = #{userId}
     </select>
 
-    <select id="findByActivateId" parameterType="string" resultType="activateUser">
-        select * from fms_activateuser where activateId = #{activateId}
+    <select id="findByActivateId" parameterType="string" resultType="activate">
+        select * from fms_activate where activateId = #{activateId}
     </select>
 
-    <delete id="deleteByIds" parameterType="Integer">
-        delete from fms_activateuser where id in
+    <delete id="deleteByIds" parameterType="long">
+        delete from fms_activate where id in
         <foreach collection="ids" index="index" item="item" open="(" close=")" separator=",">
             #{item}
         </foreach>

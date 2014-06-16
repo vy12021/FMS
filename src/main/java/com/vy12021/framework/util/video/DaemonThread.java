@@ -81,10 +81,10 @@ public class DaemonThread implements Runnable {
              */
             int exitCode = process.waitFor();
             if(0 == exitCode) {
-                resource.setConvertStatus("1");
+                resource.setConvertStatus(1);
                 resourceService.update(resource);
             } else {
-                resource.setConvertStatus("-1");
+                resource.setConvertStatus(-1);
                 resourceService.update(resource);
             }
         } catch (InterruptedException e) {

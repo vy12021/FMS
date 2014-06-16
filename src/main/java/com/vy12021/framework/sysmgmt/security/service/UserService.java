@@ -1,7 +1,7 @@
 package com.vy12021.framework.sysmgmt.security.service;
 
 import com.vy12021.framework.BaseService;
-import com.vy12021.framework.sysmgmt.index.model.ActivateUser;
+import com.vy12021.framework.sysmgmt.index.model.Activate;
 import com.vy12021.framework.sysmgmt.index.service.ActivateService;
 import com.vy12021.framework.sysmgmt.security.dao.UserMapper;
 import com.vy12021.framework.sysmgmt.security.model.User;
@@ -22,7 +22,7 @@ import java.util.UUID;
  * Created by LIUYONG on 14-2-25.
  */
 @Service
-public class UserService extends BaseService<User, Integer, UserMapper> {
+public class UserService extends BaseService<User, Long, UserMapper> {
 
     @Autowired
     private ActivateService activateService;
@@ -43,18 +43,18 @@ public class UserService extends BaseService<User, Integer, UserMapper> {
 
     @Transactional
     public void register(User user) {
-        if("0".equals(user.getActivateStatus())) {
+        if(user.getActivateStatus() == 0) {
             SimpleMail simpleMail = new SimpleMail();
             String uuid = UUID.randomUUID().toString();
-            ActivateUser activateUser = activateService.findByUserId(user.getId());
-            if(activateUser == null) {
-                activateUser = new ActivateUser();
-                activateUser.setUserId(user.getId());
-                activateUser.setActivateId(uuid);
-                activateService.save(activateUser);
+            Activate activate = activateService.findByUserId(user.getId());
+            if(activate == null) {
+                activate = new Activate();
+                activate.setUserId(user.getId());
+                activate.setActivateId(uuid);
+                activateService.save(activate);
             } else {
-                activateUser.setActivateId(uuid);
-                activateService.update(activateUser);
+                activate.setActivateId(uuid);
+                activateService.update(activate);
             }
             List<String> recipientList = new ArrayList<String>();
             recipientList.add(user.getUserInfo().getEmail());

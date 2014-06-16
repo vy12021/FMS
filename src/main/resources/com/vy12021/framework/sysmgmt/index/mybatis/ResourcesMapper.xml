@@ -103,7 +103,7 @@
         select * from fms_resources
     </select>
 
-    <select id="findByIds" parameterType="Integer" resultType="resource">
+    <select id="findByIds" parameterType="long" resultType="resource">
         select * from fms_resources where id in
         <foreach collection="ids" index="index" item="item" open="(" close=")" separator=",">
             #{item}

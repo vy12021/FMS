@@ -17,12 +17,12 @@ public class UserInfo implements Serializable {
     /**
      * 主键
      */
-    private Integer id;
+    private Long id;
 
     /**
      * 用户关联id
      */
-    private Integer userId;
+    private Long userId;
 
     /**
      * 性别

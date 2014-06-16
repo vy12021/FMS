@@ -57,7 +57,7 @@
         where id = #{pojo.id}
     </update>
 
-    <select id="findByIds" parameterType="int" resultType="Group">
+    <select id="findByIds" parameterType="long" resultType="Group">
         select * from fms_group where id in
         <foreach collection="ids" index="index" item="item" open="(" close=")" separator=",">
             #{item}
@@ -68,7 +68,7 @@
         select * from fms_group
     </select>
 
-    <delete id="deleteByIds" parameterType="int">
+    <delete id="deleteByIds" parameterType="long">
         delete from fms_group where id in
         <foreach collection="ids" index="index" item="item" open="(" close=")" separator=",">
             #{item}

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.vy12021.framework.sysmgmt.security.dao.SysModuleMapper">
+
+    <insert id="save" parameterType="SysModule" useGeneratedKeys="true" keyProperty="pojo.id"  keyColumn="id">
+        insert into fms_sys_module
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="pojo.superId != null">
+                superId,
+            </if>
+            <if test="pojo.moduleName != null">
+                moduleName,
+            </if>
+            <if test="pojo.moduleUrl != null">
+                moduleUrl,
+            </if>
+            <if test="pojo.resourceName != null">
+                resourceName,
+            </if>
+            <if test="pojo.iconUri != null">
+                iconUri,
+            </if>
+            <if test="pojo.isLeave != null">
+                isLeave,
+            </if>
+            <if test="pojo.authId != null">
+                authId
+            </if>
+        </trim>
+        values
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="pojo.superId != null">
+                #{pojo.superId},
+            </if>
+            <if test="pojo.moduleName != null">
+                #{pojo.moduleName},
+            </if>
+            <if test="pojo.moduleUrl != null">
+                #{pojo.moduleUrl},
+            </if>
+            <if test="pojo.resourceName != null">
+                #{pojo.resourceName},
+            </if>
+            <if test="pojo.iconUri != null">
+                #{pojo.iconUri},
+            </if>
+            <if test="pojo.isLeave != null">
+                #{pojo.isLeave},
+            </if>
+            <if test="pojo.authId != null">
+                #{pojo.authId}
+            </if>
+        </trim>
+    </insert>
+
+    <update id="update" parameterType="SysModule">
+        update fms_sys_module
+        <set>
+            <trim prefix=" " suffix=" " suffixOverrides=",">
+                <if test="pojo.superId != null">
+                    superId = #{pojo.superId},
+                </if>
+                <if test="pojo.moduleName != null">
+                    moduleName = #{pojo.moduleName},
+                </if>
+                <if test="pojo.moduleUrl != null">
+                    moduleUrl = #{pojo.moduleUrl},
+                </if>
+                <if test="pojo.resourceName != null">
+                    resourceName = #{pojo.resourceName},
+                </if>
+                <if test="pojo.iconUri != null">
+                    iconUri = #{pojo.iconUri},
+                </if>
+                <if test="pojo.isLeave != null">
+                    isLeave = #{pojo.isLeave},
+                </if>
+                <if test="pojo.authId != null">
+                    authId = #{pojo.authId}
+                </if>
+            </trim>
+        </set>
+        where id = #{pojo.id}
+    </update>
+
+    <select id="findByIds" parameterType="long" resultType="SysModule">
+        select * from fms_sys_module where id in
+        <foreach collection="ids" index="index" item="item" open="(" close=")" separator=",">
+            #{item}
+        </foreach>
+    </select>
+
+    <select id="findModulesByUser" parameterType="long" resultType="SysModule">
+        select * from fms_sys_module where authId = #{userId}
+    </select>
+
+    <select id="findModulesBySuperId" parameterType="long" resultType="SysModule">
+        select * from fms_sys_module where authId = #{userId} and superId = #{superId}
+    </select>
+
+
+
+    <select id="findAll" resultType="SysModule">
+        select * from fms_sys_module
+    </select>
+
+    <delete id="deleteByIds" parameterType="long">
+        delete from fms_sys_module where id in
+        <foreach collection="ids" index="index" item="item" open="(" close=")" separator=",">
+            #{item}
+        </foreach>
+    </delete>
+
+</mapper>

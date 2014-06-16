@@ -104,7 +104,7 @@
         where ku.id=#{id}
     </select>
 
-    <select id="findByIds" parameterType="int" resultType="User">
+    <select id="findByIds" parameterType="long" resultType="User">
         select * from fms_user as ku
         where ku.id in
         <foreach collection="ids" index="index" item="item" open="(" close=")" separator=",">
@@ -178,7 +178,7 @@
         where ku.username = #{username}
     </select>
 
-    <delete id="deleteByIds" parameterType="int">
+    <delete id="deleteByIds" parameterType="long">
         delete from fms_user where id in
         <foreach collection="ids" index="index" item="item" open="(" close=")" separator=",">
             #{item}

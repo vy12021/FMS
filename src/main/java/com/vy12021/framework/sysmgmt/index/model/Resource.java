@@ -14,7 +14,7 @@ import java.io.Serializable;
 public class Resource implements Serializable {
 
     private static final long serialVersionUID = 2165670062464092725L;
-    private Integer id;
+    private Long id;
 
     private String name;
 
@@ -24,7 +24,7 @@ public class Resource implements Serializable {
 
     private String desFmt;
 
-    private String size;
+    private Long size;
 
     private String type;
 
@@ -32,6 +32,6 @@ public class Resource implements Serializable {
 
     private String createDate;
 
-    private String convertStatus;
+    private Integer convertStatus;
 
 }

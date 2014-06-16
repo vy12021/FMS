@@ -57,13 +57,13 @@
         where id = #{pojo.id}
     </update>
 
-    <select id="findPermissionsByGroupId" parameterType="int" resultType="AccountPermission">
+    <select id="findPermissionsByGroupId" parameterType="long" resultType="AccountPermission">
         select * from fms_permission as kp where kp.id in
 		(select kgp.permissionId
         from fms_group_permission as kgp where kgp.groupId = #{groupId})
     </select>
 
-    <select id="findByIds" parameterType="int" resultType="AccountPermission">
+    <select id="findByIds" parameterType="long" resultType="AccountPermission">
         select * from fms_permission where id in
         <foreach collection="ids" index="index" item="item" open="(" close=")" separator=",">
             #{item}
@@ -74,7 +74,7 @@
         select * from fms_permission
     </select>
 
-    <delete id="deleteByIds" parameterType="int">
+    <delete id="deleteByIds" parameterType="long">
         delete from fms_permission where id in
         <foreach collection="ids" index="index" item="item" open="(" close=")" separator=",">
             #{item}

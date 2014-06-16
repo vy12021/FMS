@@ -11,10 +11,18 @@ import java.security.NoSuchAlgorithmException;
 @Component
 public class FormatUtils {
 
-    public Integer[] convertStringArray(String[] stringArray) {
+    public Integer[] convertStringArrayToInteger(String[] stringArray) {
         Integer[] results = new Integer[stringArray.length];
         for (int i = 0; i < stringArray.length; i++) {
             results[i] = Integer.parseInt(stringArray[i]);
+        }
+        return results;
+    }
+
+    public Long[] convertStringArrayToLong(String[] stringArray) {
+        Long[] results = new Long[stringArray.length];
+        for (int i = 0; i < stringArray.length; i++) {
+            results[i] = Long.parseLong(stringArray[i]);
         }
         return results;
     }

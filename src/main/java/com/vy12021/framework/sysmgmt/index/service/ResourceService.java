@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
  */
 
 @Service
-public class ResourceService extends BaseService<Resource, Integer, ResourceMapper> {
+public class ResourceService extends BaseService<Resource, Long, ResourceMapper> {
 
     @Autowired
     @Override

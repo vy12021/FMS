@@ -17,7 +17,7 @@ public class User implements Serializable {
     /**
      * 主键id
      */
-    private Integer id;
+    private Long id;
 
     /**
      * 用户名
@@ -32,11 +32,11 @@ public class User implements Serializable {
     /**
      * 激活状态
      */
-    private String activateStatus;
+    private Integer activateStatus;
 
     private String createDate;
 
-    private Integer created;
+    private Long created;
     /**
      * 用户详细信息
      */
