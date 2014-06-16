@@ -71,3 +71,15 @@ id INTEGER primary key auto_increment ,
 userId INTEGER not null unique ,
 activateId char(100)
 );
+
+#系统模块数据
+create table fms_sys_module(
+id INTEGER primary key auto_increment,
+superId INTEGER,
+moduleName char(50),
+moduleUrl char(200),
+resourceName char(100),
+iconUri char(200),
+isLeave INTEGER,
+authId char(100)
+);

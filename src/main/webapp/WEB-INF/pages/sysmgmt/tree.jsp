@@ -22,40 +22,4 @@
             </li>
         </ul>
     </div>
-    <div class="accordionHeader">
-        <h2><span>Folder</span>界面组件</h2>
-    </div>
-    <div class="accordionContent">
-        <ul class="tree treeFolder">
-            <li><a href="tabsPage.html" target="navTab">主框架面板</a>
-                <ul>
-                    <li><a href="http://www.baidu.com" target="navTab" rel="main">我的主页</a></li>
-                </ul>
-            </li>
-        </ul>
-    </div>
-    <div class="accordionHeader">
-        <h2><span>Folder</span>界面组件</h2>
-    </div>
-    <div class="accordionContent">
-        <ul class="tree treeFolder">
-            <li><a href="tabsPage.html" target="navTab">主框架面板</a>
-                <ul>
-                    <li><a href="http://www.baidu.com" target="navTab" rel="main">我的主页</a></li>
-                </ul>
-            </li>
-        </ul>
-    </div>
-    <div class="accordionHeader">
-        <h2><span>Folder</span>界面组件</h2>
-    </div>
-    <div class="accordionContent">
-        <ul class="tree treeFolder">
-            <li><a href="tabsPage.html" target="navTab">主框架面板</a>
-                <ul>
-                    <li><a href="http://www.baidu.com" target="navTab" rel="main">我的主页</a></li>
-                </ul>
-            </li>
-        </ul>
-    </div>
 </div>

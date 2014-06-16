@@ -33,7 +33,7 @@ public class SysModule implements Serializable {
     private String iconUri;
 
     /*是否叶子节点*/
-    private String isLeave;
+    private Integer isLeave;
 
     /*授权id*/
     private String authId;
